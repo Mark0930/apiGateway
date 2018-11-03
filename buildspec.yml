@@ -1,33 +1,12 @@
-version: 0.2            
+version: 0.2
+
 phases:
   install:
-  - echo "installing"
-  pre_build:
     commands:
+      - echo "installing"
   build:
     commands:
-    finally:
+      - echo "building"
   post_build:
     commands:
-    finally:
-# artifacts:
-#   files:
-#   discard-paths: yes
-#   base-directory: location
-#   secondary-artifacts:
-#     artifactIdentifier:
-#       files:
-#         - location
-#         - location
-#       discard-paths: yes
-#       base-directory: location
-#     artifactIdentifier:
-#       files:
-#         - location
-#         - location
-#       discard-paths: yes
-#       base-directory: location
-# cache:
-#   paths:
-#     - path
-#     - path
+      - echo "post build"

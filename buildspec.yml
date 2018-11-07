@@ -21,7 +21,7 @@ phases:
       - |
       - echo "zipping src"
       - cd src/coffeeshopGet
-      - zip ../zips/coffeeshopGet.zip index.js
+      - zip ./zips/coffeeshopGet.zip index.js
       - cd ..
   build:
     commands:

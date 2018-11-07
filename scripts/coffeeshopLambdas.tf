@@ -9,11 +9,11 @@ resource "aws_lambda_function" "coffeeshopGet" {
 
   runtime = "nodejs8.10"
 
-  environment {
-    variables = {
-      environment = "${var.environment}"
-    }
-  }
+  # environment {
+  #   variables = {
+  #     environment = "${var.environment}"
+  #   }
+  # }
 
   role = "${aws_iam_role.lambda_exec.arn}"
 }

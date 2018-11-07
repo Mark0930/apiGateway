@@ -16,7 +16,7 @@ resource "aws_lambda_function" "example" {
 # IAM role which dictates what other AWS services the Lambda function
 # may access.
 resource "aws_iam_role" "lambda_exec" {
-  name = "serverless_example_lambda"
+  name = "${var.environment}-serverless_example_lambda"
 
   assume_role_policy = <<EOF
 {
@@ -36,7 +36,7 @@ EOF
 }
 
 resource "aws_iam_policy" "lambda_logging" {
-  name = "lambda_logging"
+  name = "${var.environment}-lambda_logging"
   path = "/"
   description = "IAM policy for logging from a lambda"
 
@@ -66,7 +66,7 @@ resource "aws_iam_role_policy_attachment" "lambda_logs" {
 }
 
 resource "aws_iam_role" "invocation_role" {
-  name = "invocation-role"
+  name = "${var.environment}-invocation-role"
   path = "/"
 
   assume_role_policy = <<EOF
@@ -88,7 +88,7 @@ EOF
 
 # invocation role
 resource "aws_iam_role_policy" "gateway-policy" {
-  name = "invocation-policy"
+  name = "${var.environment}-invocation-policy"
   role = "${aws_iam_role.invocation_role.id}"
 
   policy = <<POLICY

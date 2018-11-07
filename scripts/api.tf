@@ -1,6 +1,6 @@
 resource "aws_api_gateway_rest_api" "example" {
-  name        = "Mark test"
-  description = "Terraform Serverless Application Example"
+  name        = "${var.environment}-Mark test"
+  description = "ci/cd pipeline"
 }
 
 resource "aws_api_gateway_resource" "proxy" {

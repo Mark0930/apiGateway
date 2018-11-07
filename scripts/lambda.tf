@@ -62,3 +62,45 @@ resource "aws_iam_role_policy_attachment" "lambda_logs" {
   role = "${aws_iam_role.lambda_exec.name}"
   policy_arn = "${aws_iam_policy.lambda_logging.arn}"
 }
+
+resource "aws_iam_role" "invocation_role" {
+  name = "invocation-role"
+  path = "/"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "apigateway.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}
+
+# invocation role
+resource "aws_iam_role_policy" "gateway-policy" {
+  name = "invocation-policy"
+  role = "${aws_iam_role.invocation_role.id}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+       "lambda:*"
+      ],
+      "Resource": "*",
+      "Effect": "Allow"
+    }
+  ]
+}
+POLICY
+}

@@ -1,5 +1,5 @@
 resource "aws_api_gateway_rest_api" "example" {
-  name        = "ServerlessExample"
+  name        = "Mark test"
   description = "Terraform Serverless Application Example"
 }
 

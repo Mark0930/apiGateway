@@ -48,7 +48,8 @@ resource "aws_iam_policy" "lambda_logging" {
       "Action": [
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
-        "logs:PutLogEvents"
+        "logs:PutLogEvents",
+        "dynamodb:*"
       ],
       "Resource": "arn:aws:logs:*:*:*",
       "Effect": "Allow"
